@@ -1,0 +1,35 @@
+{
+	"name": "heic2-jpg-png",
+	"version": "1.0.0",
+	"description": "Конвертор heic в jpg или png",
+	"author": "ProjectSoft",
+	"homepage": "https://github.com/ProjectSoft-STUDIONIONS/heic2-jpg-png",
+	"license": "MIT",
+	"main": "index.html",
+	"nodejs": true,
+	"chromium-args": "--child-clean-exit --ignore-certificate-errors --disk-cache-size=1 --media-cache-size=1 --disable-web-security --use-strict=true --allow-running-insecure-content",
+	"winIco": "favicon.ico",
+	"page-cache": false,
+	"webkit": {
+		"plugin": true
+	},
+	"window": {
+		"title": "Конвертор heic в jpg или png",
+		"icon": "favicon.png",
+		"exe_icon": "favicon.png",
+		"mac_icon": "favicon.png",
+		"show_in_taskbar": true,
+		"kiosk_emulation": false,
+		"id": "heic2-jpg-png",
+		"position": "center",
+		"resizable": true,
+		"visible": true,
+		"min_width": 800,
+		"min_height": 520,
+		"width": 800,
+		"height": 520
+	},
+	"dependencies": {
+		"nw-dialog": "1.0.7"
+	}
+}

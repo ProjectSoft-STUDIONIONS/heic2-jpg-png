@@ -1,6 +1,6 @@
 *.log
-.env
 *.sublime-workspace
+*-lock.json
 
 logs/
 bower_components/
@@ -9,3 +9,8 @@ node_modules/
 build/
 install/
 test/
+
+application/*
+
+!application/package.json
+!application/favicon.*
