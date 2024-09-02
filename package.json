@@ -1,0 +1,19 @@
+{
+	"name": "heic2-jpg-png",
+	"version": "1.0.0",
+	"description": "Конвертор heic в jpg или png",
+	"main": "Gruntfile.js",
+	"scripts": {
+		"test": "npm i"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ProjectSoft-STUDIONIONS/heic2-jpg-png.git"
+	},
+	"author": "ProjectSoft <projectsoft2009@yandex.ru>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/ProjectSoft-STUDIONIONS/heic2-jpg-png/issues"
+	},
+	"homepage": "https://github.com/ProjectSoft-STUDIONIONS/heic2-jpg-png#readme"
+}

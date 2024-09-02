@@ -1,0 +1,13 @@
+{
+	"folders":
+	[
+		{
+			"name": "ГБОУ СОШ с. Бобровка",
+			"path": "."
+		}
+	],
+	"settings":  {
+		"font_size": 12,
+		"tab_size": 4
+	}
+}
