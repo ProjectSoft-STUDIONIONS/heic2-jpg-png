@@ -3,7 +3,12 @@ on:
   push:
     tags:
       - "*"
-    workflow_dispatch:
+  workflow_dispatch:
+    inputs:
+      Name:
+        description: NodeJS with Grunt
+        required: true
+        default: 'NodeJS with Grunt'
 jobs:
   build:
     runs-on: windows-latest
