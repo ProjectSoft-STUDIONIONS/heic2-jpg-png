@@ -5,11 +5,9 @@
 	"main": "Gruntfile.js",
 	"scripts": {
 		"preinstall": "npm i -g less pug-cli bower && bower install && cd application && npm i",
-		"test": "npm i"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ProjectSoft-STUDIONIONS/heic2-jpg-png.git"
+		"inst": "npm i",
+		"test": "grunt -v",
+		"build": "grunt build -v"
 	},
 	"author": "ProjectSoft <projectsoft2009@yandex.ru>",
 	"license": "MIT",

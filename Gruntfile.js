@@ -28,10 +28,11 @@ module.exports = function(grunt) {
 
 	const path = require('path'),
 		uniqid = function () {
-			let result = URL.createObjectURL(new Blob([])).slice(-36).replace(/-/g, '');
+			let result = URL.createObjectURL(new Blob([])).slice(-36).replace(/-/g, "");
 			return result;
 		};
 
+	console.log(uniqid());
 	var gc = {
 			sdk: target ? 'normal' : 'sdk',
 			version: version
@@ -69,9 +70,9 @@ module.exports = function(grunt) {
 				files: [
 					{
 						expand: true,
-						cwd: "src/images",
+						cwd: "src/fonts",
 						src: "**",
-						dest: "application/images"
+						dest: "application/fonts"
 					},
 					{
 						expand: true,
@@ -81,12 +82,6 @@ module.exports = function(grunt) {
 					},
 				]
 			},
-			//app: {
-			//	expand: true,
-			//	cwd: 'src/js/',
-			//	src: 'rutube-video.js',
-			//	dest: 'application/js/',
-			//}
 		},
 		less: {
 			main: {
@@ -96,10 +91,8 @@ module.exports = function(grunt) {
 					plugins: [
 						
 					],
-					data: function(dest, src) {
-						return {
-							"hash": uniqid(),
-						}
+					modifyVars: {
+						"hash": uniqid()
 					}
 				},
 				files: {

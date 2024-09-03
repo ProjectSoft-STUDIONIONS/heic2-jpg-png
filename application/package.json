@@ -1,5 +1,5 @@
 {
-	"name": "heic2-jpg-png",
+	"name": "Heic2JpgPng",
 	"version": "1.0.0",
 	"description": "Конвертор heic в jpg или png",
 	"author": "ProjectSoft",
@@ -30,6 +30,7 @@
 		"height": 520
 	},
 	"dependencies": {
+		"heic-convert": "^2.1.0",
 		"nw-dialog": "1.0.7"
 	}
 }

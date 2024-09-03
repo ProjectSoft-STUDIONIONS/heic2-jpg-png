@@ -1,0 +1,42 @@
+body {
+	padding: 0;
+	margin: 0;
+	font-family: Tahoma, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: normal;
+}
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	position: relative;
+	header,
+	main,
+	footer {
+		display: block;
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: #ffffff;
+		color: #333333;
+		box-shadow: 0 0 1px #000000;
+		.clearfix();
+	}
+	header,
+	footer {
+		flex: 0 0 auto;
+		position: sticky;
+		z-index: 2;
+	}
+	header {
+		top: 0;
+	}
+	footer {
+		bottom: 0;
+	}
+	main {
+		position: relative;
+		flex: 1 0 auto;
+		z-index: 1;
+	}
+}

@@ -1,12 +1,32 @@
 html(lang="ru-RU")
 	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		base(href="/")
-		link(rel="styleshet" href="main.css?" + hash)
+		script(src="js/main.js?" + hash)
+		link(rel="stylesheet" href="css/main.css?" + hash)
 	body
 		header
-			|Content
+			h1.text-center
+				|Конвертор
+				br
+				|heic в jpg или png
 		main
-			|Content
+			p
+				button.btn.icon-up
+				button.btn.icon-down
 		footer
-			|Content
-		script(src="js/main.js?" + hash)
+			.flex.flex_block_row
+				p.text-left
+					a(href="https://github.com/ProjectSoft-STUDIONIONS/heic2-jpg-png" target="_blank" title="Перейти в репозиторий программы")
+						i.icon-github
+						|&nbsp;
+						span
+							|HEIC to JPG PNG
+				p.text-center
+					|Copyright © 2008 ― all
+				p.text-right
+					em
+						|Developed by&nbsp;
+						a(href="https://github.com/ProjectSoft-STUDIONIONS" target="_blank" title="Перейти на страницу GitHub разработчика")
+							|ProjectSoft
