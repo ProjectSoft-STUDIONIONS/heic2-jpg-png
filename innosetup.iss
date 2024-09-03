@@ -53,15 +53,15 @@ russian.StopProgramm=Остановить «{#DevAppName}»...
 Source: "build\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Run]
-Filename: "{app}\{#DevAppExeName}"; Flags: postinstall nowait skipifsilent; Description: "{cm:RunProgramm}";
+Filename: "{app}\Heic2JpgPng.exe"; Flags: postinstall nowait skipifsilent; Description: "{cm:RunProgramm}";
 
 [UninstallDelete]
 Type: filesandordirs; Name: {autopf}\{cm:ProgramName}
 Type: filesandordirs; Name: {localappdata}\{#DevAppName}
 
 [UninstallRun]
-Filename: {sys}\taskkill.exe; Parameters: "/F /IM heic2-jpg-png.exe /T"; Flags: skipifdoesntexist runhidden waituntilterminated; StatusMsg: "{cm:StopProgramm}"
+Filename: {sys}\taskkill.exe; Parameters: "/F /IM Heic2JpgPng.exe /T"; Flags: skipifdoesntexist runhidden waituntilterminated; StatusMsg: "{cm:StopProgramm}"
 
 [Icons]
-Name: "{autoprograms}\{cm:ProgramName}"; Filename: "{app}\{#DevAppExeName}"
-Name: "{autodesktop}\{cm:ProgramName}"; Filename: "{app}\{#DevAppExeName}"
+Name: "{autoprograms}\{cm:ProgramName}"; Filename: "{app}\Heic2JpgPng.exe"
+Name: "{autodesktop}\{cm:ProgramName}"; Filename: "{app}\Heic2JpgPng.exe"
