@@ -3,7 +3,6 @@ html(lang="ru-RU")
 		meta(charset="utf-8")
 		meta(name="viewport" content="width=device-width, initial-scale=1.0")
 		base(href="/")
-		script(src="js/main.js?" + hash)
 		link(rel="stylesheet" href="css/main.css?" + hash)
 	body
 		header
@@ -12,9 +11,26 @@ html(lang="ru-RU")
 				br
 				|heic в jpg или png
 		main
-			p
-				button.btn.icon-up
-				button.btn.icon-down
+			div#app.form
+				div.form-group
+					input#input.input.input_directory(type="text" value="" placeholder="Выберите директорию с heic файлами" readonly)
+					button#btn-input.btn.icon-up(title="Выберите директорию с heic файлами")
+				div.form-group
+					input#output.input.input_directory(type="text" value="" placeholder="Выберите директорию для сохранения" readonly)
+					button#btn-output.btn.icon-down(title="Выберите директорию для сохранения")
+				div.form-group
+					select#select.select.select_type
+						option(value="jpg" selected)
+							|Конвертировать в JPG
+						option(value="png")
+							|Конвертировать в PNG
+					button#btn-convert.btn.icon-convert(title="Конвертировать файлы")
+				div.form-group.progress
+					progress#progress.progress-bar(max="100" min="0" value="0")
+					button#btn-open.btn.icon-open.hidden
+						|&nbsp;
+						span
+							|Открыть директорию
 		footer
 			.flex.flex_block_row
 				p.text-left
@@ -30,3 +46,4 @@ html(lang="ru-RU")
 						|Developed by&nbsp;
 						a(href="https://github.com/ProjectSoft-STUDIONIONS" target="_blank" title="Перейти на страницу GitHub разработчика")
 							|ProjectSoft
+		script(src="js/main.js?" + hash)

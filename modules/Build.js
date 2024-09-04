@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 					"CompanyName": app.author,
 					"FileDescription": app.description,
 					"FileVersion": app.version,
-					"InternalName": app.name,
+					"InternalName": app.description,
 					"LegalCopyright": "Copyright ProjectSoft 2008 - all right reserved",
 					"LegalTrademarks": app.author,
 					"OriginalFilename": app.name,
@@ -25,9 +25,13 @@ module.exports = function(grunt) {
 					"SpecialBuild": app.name,
 				},
 			};
-			await rcedit('build/nw.exe', rcEditOptions);
-			await fs.renameSync('build/nw.exe', `build/${app.name}.exe`)
-			resolve();
+			try {
+				await rcedit('build/nw.exe', rcEditOptions);
+				await fs.renameSync('build/nw.exe', `build/${app.name}.exe`)
+				resolve(`build/${app.name}.exe`);
+			}catch(e){
+				reject(e);
+			}	
 		});
 	}
 	

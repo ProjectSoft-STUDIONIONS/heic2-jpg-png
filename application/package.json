@@ -24,12 +24,13 @@
 		"position": "center",
 		"resizable": true,
 		"visible": true,
-		"min_width": 800,
-		"min_height": 520,
-		"width": 800,
-		"height": 520
+		"min_width": 600,
+		"min_height": 480,
+		"width": 600,
+		"height": 480
 	},
 	"dependencies": {
+		"fs-extra": "^11.2.0",
 		"heic-convert": "^2.1.0",
 		"nw-dialog": "1.0.7"
 	}

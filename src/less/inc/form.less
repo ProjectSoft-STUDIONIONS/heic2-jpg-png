@@ -1,0 +1,125 @@
+.form {
+	&-group {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		justify-content: space-between;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		.input {
+			flex: 1 0 auto;
+			padding: 9px 12px;
+			border: unset;
+			box-shadow: 0 0 2px #000;
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+			color: #000000;
+			&:disabled {
+				background-color: #dddddd;
+				color: #999999;
+			}
+			&,
+			&:focus,
+			&:focus-within,
+			&:focus-visible {
+				&,
+				+ .btn {
+					outline: unset;
+				}
+			}
+		}
+		.btn {
+			flex: 0 0 auto;
+			cursor: pointer;
+			padding: 10px;
+			border: unset;
+			box-shadow: 0 0 2px #000;
+			border-top-left-radius: 0px;
+			border-bottom-left-radius: 0px;
+			border-top-right-radius: 6px;
+			border-bottom-right-radius: 6px;
+			background-color: #000000;
+			color: #ffffff;
+			text-transform: uppercase;
+			line-height: 1;
+			user-select: none;
+			outline: unset;
+			&:focus,
+			&:focus-within,
+			&:focus-visible {
+				outline: unset;
+				box-shadow: 0 0 4px #000;
+			}
+			&:hover {
+				background-color: #444444;
+			}
+			&:disabled {
+				background-color: #dddddd;
+				color: #999999;
+				cursor: not-allowed;
+			}
+		}
+		.select {
+			flex: 1 0 auto;
+			cursor: pointer;
+			padding: 7px 8px;
+			border: unset;
+			box-shadow: 0 0 2px #000;
+			border-top-left-radius: 6px;
+			border-bottom-left-radius: 6px;
+			border-top-right-radius: 0px;
+			border-bottom-right-radius: 0px;
+			color: #000000;
+			position: relative;
+			z-index: 1;
+			option {
+				padding: 7px 8px;
+			}
+			+ .btn {
+				padding: 10px 12px 9px;
+			}
+			&:disabled {
+				background-color: #dddddd;
+				color: #999999;
+				cursor: not-allowed;
+				background-color: #dddddd;
+				color: #999999;
+
+			}
+			&:focus,
+			&:focus-within,
+			&:focus-visible {
+				&,
+				+ .btn {
+					outline: unset;
+					box-shadow: 0 0 4px #000;
+				}
+			}
+		}
+		&.progress {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			.btn {
+				border-top-left-radius: 6px;
+				border-bottom-left-radius: 6px;
+				border-top-right-radius: 6px;
+				border-bottom-right-radius: 6px;
+			}
+			.progress {
+				&-bar {
+					&::-webkit-progress-bar {
+						background-color: #ddd;
+					}
+
+					&::-webkit-progress-value {
+						background-color: #fff;
+					}
+				}
+			}
+		}
+	}
+}

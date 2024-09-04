@@ -1,6 +1,7 @@
 *.log
 *.sublime-workspace
 *-lock.json
+*.heic
 
 logs/
 bower_components/
@@ -9,7 +10,7 @@ node_modules/
 build/
 install/
 test/
-
+src/imagemagick
 application/*
 
 !application/package.json

@@ -81,7 +81,7 @@ module.exports = function(grunt) {
 						dest: "build/"
 					},
 				]
-			},
+			}
 		},
 		less: {
 			main: {
@@ -92,7 +92,9 @@ module.exports = function(grunt) {
 						
 					],
 					modifyVars: {
-						"hash": uniqid()
+						"hash": uniqid(),
+						"icomoon-font-path": "ConvertHeic",
+						"icomoon-font-path": "/fonts",
 					}
 				},
 				files: {
@@ -212,7 +214,6 @@ module.exports = function(grunt) {
 		'clean:all',
 		'concat:main',
 		'uglify',
-		/*'copy:app',*/
 		'less',
 		'cssmin',
 		'pug',
