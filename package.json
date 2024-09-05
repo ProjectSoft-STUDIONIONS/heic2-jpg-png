@@ -7,7 +7,8 @@
 		"preinstall": "npm i -g less pug-cli bower && bower install && cd application && npm i",
 		"inst": "npm i",
 		"test": "grunt -v",
-		"build": "grunt build -v"
+		"build": "grunt build -v",
+		"page": "grunt --gruntfile page.js -v"
 	},
 	"author": "ProjectSoft <projectsoft2009@yandex.ru>",
 	"license": "MIT",
@@ -24,6 +25,7 @@
 		"grunt-contrib-concat": "^2.1.0",
 		"grunt-contrib-copy": "^1.0.0",
 		"grunt-contrib-cssmin": "^5.0.0",
+		"grunt-contrib-imagemin": "^4.0.0",
 		"grunt-contrib-less": "^3.0.0",
 		"grunt-contrib-pug": "^3.0.0",
 		"grunt-contrib-uglify-es": "^3.3.0",
