@@ -3,7 +3,36 @@
 	[
 		{
 			"name": "Конвертор heic в jpg или png",
-			"path": "."
+			"path": ".",
+			"file_exclude_patterns": [
+				
+			],
+			"folder_exclude_patterns": [
+				
+			]
+		}
+	],
+	"build_systems":
+	[
+		{
+			"name": "Test Project",
+			"working_dir": "$project_path",
+			"shell_cmd": "npm run test && echo Finish Test Project",
+			"file_patterns": [
+				"*.less",
+				"*.js",
+				"*.pug"
+			]
+		},
+		{
+			"name": "Build Project",
+			"working_dir": "$project_path",
+			"shell_cmd": "npm run build && echo Finish Build Project",
+			"file_patterns": [
+				"*.less",
+				"*.js",
+				"*.pug"
+			]
 		}
 	],
 	"settings":  {

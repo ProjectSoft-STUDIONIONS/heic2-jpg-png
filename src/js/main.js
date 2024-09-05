@@ -10,12 +10,14 @@
 		outputValue = "",
 		selectValue = "";
 
-	const fs = require('node:fs'),
-		path = require('node:path'),
-		{ promisify } = require('node:util'),
+	const fs = require('fs'),
+		path = require('path'),
+		{ promisify } = require('util'),
+		{ spawn } = require('child_process'),
 		fse = require('fs-extra'),
 		convert = require('heic-convert'),
-		nwDialog = require('nw-dialog');
+		nwDialog = require('nw-dialog'),
+		magick = path.join(startPath, 'imagemagick', 'magick.exe');
 	// nw-dialog context set document
 	nwDialog.setContext(document);
 		// Input
@@ -28,6 +30,8 @@
 		select = document.querySelector('#select'),
 		btnConvert = document.querySelector('#btn-convert'),
 		// Progress and Open
+		progressWrapp = document.querySelector('.progress-wrap'),
+		progressTitle = document.querySelector('.progress-bar-title'),
 		progress = document.querySelector('#progress'),
 		btnOpen = document.querySelector('#btn-open'),
 		// check if directory exists
@@ -78,7 +82,7 @@
 			btnInput.setAttribute('disabled', 'disabled');
 			btnOutput.setAttribute('disabled', 'disabled');
 			btnConvert.setAttribute('disabled', 'disabled');
-			progress.classList.remove('hidden');
+			progressWrapp.classList.remove('hidden');
 			btnOpen.classList.add('hidden');
 		},
 		enabledElements = function(){
@@ -88,8 +92,43 @@
 			btnInput.removeAttribute('disabled');
 			btnOutput.removeAttribute('disabled');
 			btnConvert.removeAttribute('disabled');
-			progress.classList.add('hidden');
+			progressWrapp.classList.add('hidden');
 			btnOpen.classList.remove('hidden');
+		},
+		resize = function(input, output) {
+			return new Promise(function(resolve, reject){
+				// console.log(input);
+				// console.log(output);
+				// console.log(magick);
+				let args = [
+						input,
+						"-quality",
+						"80",
+						"-filter",
+						"Lanczos",
+						//"-thumbnail",
+						//`${width}x`,
+						output
+					],
+					ls = spawn(magick, args);
+				ls.stdout.on('data', (data) => {
+					console.log(`stdout: ${data}`);
+					// log(`stdout: ${data}`);
+				});
+				ls.stderr.on('data', (data) => {
+					console.log(`stderr: ${data}`);
+					// log(`stderr: ${data}`);
+				});
+				ls.on('close', (code) => {
+					if(code == 0){
+						console.log('CLOSE');
+						resolve(code);
+					}else{
+						console.log('ERROR CLOSE');
+						reject(code);
+					}
+				});
+			});
 		};
 
 	// Button Input folder
@@ -97,7 +136,7 @@
 		e.preventDefault();
 		nwDialog.folderBrowserDialog(function(result) {
 			inputValue = input.value = result;
-			progress.classList.remove('hidden');
+			progressWrapp.classList.remove('hidden');
 			btnOpen.classList.add('hidden');
 		});
 		return !1;
@@ -107,7 +146,7 @@
 		e.preventDefault();
 		nwDialog.folderBrowserDialog(function(result) {
 			outputValue = output.value = result;
-			progress.classList.remove('hidden');
+			progressWrapp.classList.remove('hidden');
 			btnOpen.classList.add('hidden');
 		});
 		return !1;
@@ -115,7 +154,7 @@
 	// File Type Result Selection
 	select.addEventListener('input', e => {
 		e.preventDefault();
-		progress.classList.remove('hidden');
+		progressWrapp.classList.remove('hidden');
 		btnOpen.classList.add('hidden');
 		selectValue = select.value;
 		return !1;
@@ -140,9 +179,11 @@
 			for(index in files){
 				let perc = index / (files.length - 1);
 				progress.value = perc * 100;
+				progressTitle.innerText = parseInt(progress.value) + '%';
 				try {
 					let name = path.parse(files[index]).name + ext,
-						file = path.join(inputValue, files[index]),
+						outputFile = path.join(outputValue, name),
+						file = path.join(inputValue, files[index]);
 						inputBuffer = await promisify(fs.readFile)(file),
 						outputBuffer = await convert({
 							buffer: inputBuffer,
@@ -150,20 +191,20 @@
 							quality: 1
 						});
 					await promisify(fs.writeFile)(path.join(outputValue, name), outputBuffer);
+					// await resize(file, outputFile);
 				}catch(err){
 					sdk && console.log(err);
 				}
-
-				progress.value = (index / (files.length - 1)) * 100;
 			}
 			await enabledElements();
 			progress.value = 0;
 		}).catch(err => {
 			sdk && console.log(err);
 			enabledElements();
-			progress.classList.remove('hidden');
+			progressWrapp.classList.remove('hidden');
 			btnOpen.classList.add('hidden');
 			progress.value = 0;
+			progressTitle.innerText = '';
 		});
 		return !1;
 	});
@@ -175,4 +216,26 @@
 		}
 		return !1;
 	});
+	document.body.addEventListener('dragover', function(e){
+		e.preventDefault();e
+		e.stopPropagation();
+		return !1;
+	}, false);
+	document.body.addEventListener('drop', function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		return !1;
+	}, false);
+	Array.from(document.querySelectorAll('a')).forEach((el, ind, elms) => {
+		el.addEventListener('click', (e) => {
+			e.preventDefault();
+			e.stopPropagation();
+			let element = e.target,
+				href = element.href;
+			nw.Shell.openExternal(href);
+			return !1;
+		})
+	});
+	progress.value = 0;
+	progressTitle.innerText = '';
 })();

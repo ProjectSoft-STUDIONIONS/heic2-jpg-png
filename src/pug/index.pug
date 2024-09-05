@@ -26,7 +26,10 @@ html(lang="ru-RU")
 							|Конвертировать в PNG
 					button#btn-convert.btn.icon-convert(title="Конвертировать файлы")
 				div.form-group.progress
-					progress#progress.progress-bar(max="100" min="0" value="0")
+					.progress-wrap
+						div.progress-bar-title.text-center
+							|50%
+						progress#progress.progress-bar(max="100" min="0" value="50")
 					button#btn-open.btn.icon-open.hidden
 						|&nbsp;
 						span
@@ -42,7 +45,7 @@ html(lang="ru-RU")
 				p.text-center
 					|Copyright © 2008 ― all
 				p.text-right
-					em
+					span
 						|Developed by&nbsp;
 						a(href="https://github.com/ProjectSoft-STUDIONIONS" target="_blank" title="Перейти на страницу GitHub разработчика")
 							|ProjectSoft

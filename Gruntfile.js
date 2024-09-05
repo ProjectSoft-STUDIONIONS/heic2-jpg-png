@@ -2,8 +2,8 @@ module.exports = function(grunt) {
 	process.removeAllListeners('warning');
 	require('dotenv').config();
 
-	// target=true - nwjs sdk = nortmal
-	// target=false - nwjs sdk = sdk
+	// target=false - nwjs sdk = nortmal
+	// target=true - nwjs sdk = sdk
 	// update=true - произвести скачивание nwjs и ffmpeg
 	// update=false - не производить скачивание nwjs и ffmpeg
 	// В корне проекта присутствие файла .env обязятельно
@@ -34,10 +34,10 @@ module.exports = function(grunt) {
 
 	console.log(uniqid());
 	var gc = {
-			sdk: target ? 'normal' : 'sdk',
+			sdk: target ? 'sdk' : 'normal',
 			version: version
 		},
-		flv = target ? '' : '-sdk',
+		flv = target ? '-sdk' : '',
 		pkg = grunt.file.readJSON('package.json');
 
 	grunt.initConfig({
@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 			},
 			all: [
 				"build/**/*",
-				"install/",
+				"install/**/*",
 				"*-lock.json",
 				'application/css/',
 				'application/fonts/',
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
 						expand: true,
 						cwd: "src/fonts",
 						src: "**",
-						dest: "application/fonts"
+						dest: "application/fonts/"
 					},
 					{
 						expand: true,

@@ -2,16 +2,17 @@
 *.sublime-workspace
 *-lock.json
 *.heic
+*.svg
 
 logs/
 bower_components/
 node_modules/
+
 .cache/
 build/
 install/
 test/
-src/imagemagick
-application/*
 
+application/*
 !application/package.json
 !application/favicon.*
