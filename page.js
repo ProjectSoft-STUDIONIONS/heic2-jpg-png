@@ -55,13 +55,13 @@ module.exports = function(grunt){
 				files: [
 					{
 						expand: true,
-						cwd: "src",
+						cwd: "application",
 						src: "*.ico",
 						dest: "docs/"
 					},
 					{
 						expand: true,
-						cwd: `src`,
+						cwd: `application`,
 						src: "*.png",
 						dest: "docs/"
 					},

@@ -33,6 +33,16 @@
 				"*.js",
 				"*.pug"
 			]
+		},
+		{
+			"name": "Build Project Page",
+			"working_dir": "$project_path",
+			"shell_cmd": "npm run page && echo Finish Build Project Page",
+			"file_patterns": [
+				"*.less",
+				"*.js",
+				"*.pug"
+			]
 		}
 	],
 	"settings":  {
