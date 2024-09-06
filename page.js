@@ -106,7 +106,7 @@ module.exports = function(grunt){
 							"repo": "projectsoft-studionions.github.io",
 							"userName": "ProjectSoft-STUDIONIONS",
 							"page": "heic2-jpg-png",
-							"download": "ConverterHeic2JpgPng-Setup.exe.exe",
+							"download": "ConverterHeic2JpgPng-Setup.exe",
 							"title": "Конвертор heic в jpg или png | ProjectSoft GitHub Pages",
 							"h1title": "Конвертор heic в jpg или png",
 							"description": "Приложение для конвертирования heic изображений в изображения jpg или png",
