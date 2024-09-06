@@ -1,0 +1,12 @@
+body {
+	> main {
+		position: relative;
+		.wrapper {
+			h1 {
+				&::before {
+					background-image: data-uri("../../../application/favicon.png");
+				}
+			}
+		}
+	}
+}
