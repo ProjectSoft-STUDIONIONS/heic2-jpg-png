@@ -37,7 +37,7 @@
 		// check if directory exists
 		checkIfDirectoryExists = function (dirPath) {
 			return new Promise(async (resolve, reject) => {
-				console.log(dirPath);
+				sdk && console.log(dirPath);
 				try {
 					const exists = await fse.pathExists(dirPath);
 					if (exists) {
@@ -55,7 +55,7 @@
 						}
 					}
 				} catch (err) {
-					sdk && console.log(err.message  + "\n" + dirPath);
+					sdk && console.error(err.message  + "\n" + dirPath);
 					reject("");
 				}
 			});
@@ -65,11 +65,11 @@
 				let inputValDir = "",
 					outputValDir = "";
 				inputValDir = await checkIfDirectoryExists(inputVal).catch(e => {
-					sdk && console.log(e);
+					sdk && console.error(e);
 					reject(e);
 				});
 				outputValDir = await checkIfDirectoryExists(outputVal).catch(e => {
-					sdk && console.log(e);
+					sdk && console.error(e);
 					reject(e);
 				});
 				resolve();
@@ -94,41 +94,6 @@
 			btnConvert.removeAttribute('disabled');
 			progressWrapp.classList.add('hidden');
 			btnOpen.classList.remove('hidden');
-		},
-		resize = function(input, output) {
-			return new Promise(function(resolve, reject){
-				// console.log(input);
-				// console.log(output);
-				// console.log(magick);
-				let args = [
-						input,
-						"-quality",
-						"80",
-						"-filter",
-						"Lanczos",
-						//"-thumbnail",
-						//`${width}x`,
-						output
-					],
-					ls = spawn(magick, args);
-				ls.stdout.on('data', (data) => {
-					console.log(`stdout: ${data}`);
-					// log(`stdout: ${data}`);
-				});
-				ls.stderr.on('data', (data) => {
-					console.log(`stderr: ${data}`);
-					// log(`stderr: ${data}`);
-				});
-				ls.on('close', (code) => {
-					if(code == 0){
-						console.log('CLOSE');
-						resolve(code);
-					}else{
-						console.log('ERROR CLOSE');
-						reject(code);
-					}
-				});
-			});
 		};
 
 	// Button Input folder
@@ -191,15 +156,14 @@
 							quality: 1
 						});
 					await promisify(fs.writeFile)(path.join(outputValue, name), outputBuffer);
-					// await resize(file, outputFile);
 				}catch(err){
-					sdk && console.log(err);
+					sdk && console.error(err);
 				}
 			}
 			await enabledElements();
 			progress.value = 0;
 		}).catch(err => {
-			sdk && console.log(err);
+			sdk && console.error(err);
 			enabledElements();
 			progressWrapp.classList.remove('hidden');
 			btnOpen.classList.add('hidden');

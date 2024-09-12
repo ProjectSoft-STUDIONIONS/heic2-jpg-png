@@ -5,10 +5,10 @@
 	"main": "Gruntfile.js",
 	"scripts": {
 		"preinstall": "npm i -g less pug-cli bower && bower install && cd application && npm i",
-		"inst": "npm i",
-		"test": "grunt -v",
-		"build": "grunt build -v",
-		"page": "grunt --gruntfile page.js"
+		"inst":       "npm i",
+		"test":       "grunt --build=test",
+		"build":      "grunt --build=compile",
+		"page":       "grunt --gruntfile page.js"
 	},
 	"author": "ProjectSoft <projectsoft2009@yandex.ru>",
 	"license": "MIT",

@@ -13,10 +13,8 @@ module.exports = function(grunt) {
 
 	const target = process.env.NWJS_TARGET === '1' ? true : false,
 		update = process.env.NWJS_UPDATE === '1' ? true : false,
-		version = process.env.NWJS_VERSION === '0' ? false : process.env.NWJS_VERSION; // 0.87.0
-
-	console.log(target, update, version);
-	console.log(grunt.template.date(new Date().getTime(), 'yyyy-mm-dd'));
+		version = process.env.NWJS_VERSION === '0' ? false : process.env.NWJS_VERSION, // 0.84.0
+		tasksType = grunt.option('build') || 'test';
 
 	grunt.loadNpmTasks('innosetup-compiler');
 
@@ -30,9 +28,11 @@ module.exports = function(grunt) {
 		uniqid = function () {
 			let result = URL.createObjectURL(new Blob([])).slice(-36).replace(/-/g, "");
 			return result;
-		};
+		},
+		hash = uniqid();
 
-	console.log(uniqid());
+	//console.log(hash);
+
 	var gc = {
 			sdk: target ? 'sdk' : 'normal',
 			version: version
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 						
 					],
 					modifyVars: {
-						"hash": uniqid(),
+						"hash": hash,
 						"icomoon-font-path": "ConvertHeic",
 						"icomoon-font-path": "/fonts",
 					}
@@ -150,7 +150,7 @@ module.exports = function(grunt) {
 					separator: '',// '\n'
 					data: function(dest, src) {
 						return {
-							"hash": uniqid(),
+							"hash": hash,
 							"target": gc.sdk,
 						}
 					},
@@ -212,7 +212,7 @@ module.exports = function(grunt) {
 	});
 	const tasks = [
 		'clean:all',
-		'concat:main',
+		'concat',
 		'uglify',
 		'less',
 		'cssmin',
@@ -221,14 +221,21 @@ module.exports = function(grunt) {
 
 	update && tasks.push('downloader');
 
-	tasks.push( 'unzip', 'version_edit:main', 'copy:main', 'zip:main', 'clean:vk', 'buildnw:main');
+	tasks.push( 'unzip', 'version_edit', 'copy', 'zip', 'clean:vk', 'buildnw');
 
 	// Таск для запуска innosetup
 	// Клонируем Таск по умолчанию
 	const inno = JSON.parse(JSON.stringify(tasks));
 	// Добавляем запуск innosetup
 	inno.push('innosetup');
-	// Регистрируем таски
-	grunt.registerTask('default', tasks);
-	grunt.registerTask('build', inno);
+
+	console.table({
+		"ПЛАТФОРМА": target ? "sdk" : "normal",
+		"ВЕРСИЯ": version ? version : "latests",
+		"ОБНОВЛЕНИЕ": update ? "ДА" : "ИЗ КЭША",
+		"ВРЕМЯ СТАРТА": grunt.template.date(new Date().getTime(), 'yyyy-mm-dd HH:MM:ss Z')
+	});
+
+	// Регистрируем таск
+	grunt.registerTask('default', tasksType == 'test' ? tasks : (tasksType == 'compile' ? inno : tasks));
 }
