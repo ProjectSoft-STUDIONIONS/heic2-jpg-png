@@ -12,6 +12,7 @@ node_modules/
 build/
 install/
 test/
+tests/
 
 application/*
 !application/package.json
